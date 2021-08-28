@@ -1,0 +1,119 @@
+
+<style>
+pre {
+  color: lightgrey;
+  background : black;
+  width : 750px;
+}
+</style>
+<script>
+class Animal {
+ 
+   constructor(name)  {
+     this.name = name;
+   }
+ 
+   showInfo()  {
+     console.log("I'm " + this.name);
+   }
+ 
+   move()  {
+     console.log("Moving..");
+   }
+ 
+}
+ 
+class Mouse extends Animal {
+ 
+    constructor(name, age, height) {
+       super(name);
+ 
+       this.age = age;
+       this.height = height;
+    }
+ 
+    // Remplacer (override) la méthode dont le nom est le même de la classe parente.
+    showInfo()  {
+      // Appeler la méthode showInfo() de la classe parente.
+      super.showInfo();
+      console.log ("Age: " + this.age);
+      console.log ("Height: " + this.height);
+    }
+ 
+    // Substituer (override) la méthode de même nom avec la classe parente.
+    move()  {
+      console.log("Mouse Moving..");
+    }
+}
+ 
+// ------------- TEST --------------------
+let jerry = new Mouse("Jerry", 3, 5);
+ 
+console.log("Call move() method");
+ 
+jerry.move();
+ 
+console.log("\n");
+console.log("Call showInfo() method");
+ 
+jerry.showInfo();
+
+</script>
+<h1> Javascript Class - ES6</h1>
+<h2> Inheritance Method override</h2>
+<pre>
+
+	class Animal {
+	 
+	   constructor(name)  {
+		 this.name = name;
+	   }
+	 
+	   showInfo()  {
+		 console.log("I'm " + this.name);
+	   }
+	 
+	   move()  {
+		 console.log("Moving..");
+	   }
+	 
+	}
+	 
+	class Mouse extends Animal {
+	 
+		constructor(name, age, height) {
+		   super(name);
+	 
+		   this.age = age;
+		   this.height = height;
+		}
+	 
+		// Remplacer (override) la méthode dont le nom est le même de la classe parente.
+		showInfo()  {
+		  // Appeler la méthode showInfo() de la classe parente.
+		  super.showInfo();
+		  console.log ("Age: " + this.age);
+		  console.log ("Height: " + this.height);
+		}
+	 
+		// Substituer (override) la méthode de même nom avec la classe parente.
+		move()  {
+		  console.log("Mouse Moving..");
+		}
+	}
+	 
+	// ------------- TEST --------------------
+	let jerry = new Mouse("Jerry", 3, 5);
+	 
+	console.log("Call move() method");
+	 
+	jerry.move();
+	 
+	console.log("\n");
+	console.log("Call showInfo() method");
+	 
+	jerry.showInfo();
+
+</pre>
+
+<p> Open console to see the result !</p>

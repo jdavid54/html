@@ -1,0 +1,35 @@
+<script src="es6_prog01.js"></script>
+
+<style>
+pre {
+  color: lightgrey;
+  background : black;
+  width : 400px;
+}
+</style>
+
+
+<h1> Javascript Class - ES6</h1>
+
+<pre>
+
+	// ES6 Class
+	
+	class MyClass {
+	  constructor (text) {
+	  		this.text=text;}
+	  
+	  sayHello(who) {  
+	  	console.log(this.text+who);}
+	}
+
+	var say = new MyClass('Hello');
+	console.log(say);
+	say.sayHello(' world');
+	say.sayHello(' nasty world');
+
+	console.log("World");
+
+</pre>
+
+<p> Open console to see the result !</p>

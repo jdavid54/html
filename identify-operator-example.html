@@ -1,0 +1,87 @@
+
+<style>
+pre {
+  color: lightgrey;
+  background : black;
+  width : 750px;
+}
+</style>
+<script>
+// Define a class.
+class Rectangle  {
+    constructor (width = 5 , height = 10)  {
+        this.width = width;
+        this.height = height;
+    }
+    getArea() {
+        var area = this.width * this.height;
+        return area;
+    }
+}
+ 
+// Create object: r1
+let r1 = new Rectangle( 20,  10);
+ 
+// Create object: r2
+let r2 = new Rectangle( 20, 10);
+ 
+let r3 = r1;
+ 
+ 
+let  b12  =   r1 === r2; // false
+let  b13  =   r1 === r3; // true
+ 
+console.log("r1 === r2 ? " + b12); // false
+console.log("r1 === r3 ? " + b13); // true
+ 
+ 
+var bb12  = r1 !== r2; // true
+var bb13  = r1 !== r3; // false
+ 
+ 
+console.log("r1 !== r2 ? " + bb12); // true
+console.log("r1 !== r3 ? " + bb13); // false
+
+</script>
+<h1> Javascript Class - ES6</h1>
+<h2> Identify operator</h2>
+<pre>
+
+	// Define a class.
+	class Rectangle  {
+		constructor (width = 5 , height = 10)  {
+		    this.width = width;
+		    this.height = height;
+		}
+		getArea() {
+		    var area = this.width * this.height;
+		    return area;
+		}
+	}
+	 
+	// Create object: r1
+	let r1 = new Rectangle( 20,  10);
+	 
+	// Create object: r2
+	let r2 = new Rectangle( 20, 10);
+	 
+	let r3 = r1;
+	 
+	 
+	let  b12  =   r1 === r2; // false
+	let  b13  =   r1 === r3; // true
+	 
+	console.log("r1 === r2 ? " + b12); // false
+	console.log("r1 === r3 ? " + b13); // true
+	 
+	 
+	var bb12  = r1 !== r2; // true
+	var bb13  = r1 !== r3; // false
+	 
+	 
+	console.log("r1 !== r2 ? " + bb12); // true
+	console.log("r1 !== r3 ? " + bb13); // false
+
+</pre>
+
+<p> Open console to see the result !</p>

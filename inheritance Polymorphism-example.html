@@ -1,0 +1,124 @@
+
+<style>
+pre {
+  color: lightgrey;
+  background : black;
+  width : 750px;
+}
+</style>
+<script>
+
+// A Base class
+class Language {
+ 
+}
+
+class English {
+ 
+    greeting() {
+        console.log("Hello");
+    }
+}
+ 
+class French {
+    greeting() {
+        console.log("Bonjour");
+    }
+}
+
+class English2 extends Language {
+ 
+    greeting() {
+        console.log("Hello");
+    }
+}
+ 
+class French2  extends Language {
+    greeting() {
+        console.log("Bonjour");
+    }
+}
+  
+ 
+function intro(language) {
+    language.greeting();
+}
+
+function intro2(language) {  // specific languages
+    // Check type of 'language' object.
+    if(language instanceof English || language instanceof French)  {
+      language.greeting();
+    }
+	else { console.log('Not a language known');}
+} 
+
+function intro3(language) {  // every instance of base class Language
+    // Check type of 'language' object.
+    if(language instanceof Language)  {
+      language.greeting();
+    }
+	else { console.log('Not an instance of Language');}
+}
+// -------------- TEST ----------------------
+ 
+let flora = new English();
+let aalase = new French();
+
+let flora2 = new English2();
+let aalase2 = new French2();
+let someObject = {};
+ 
+// Call function:
+intro(flora);
+intro(aalase);
+try {intro(someObject);}     // Error!!!
+catch (e) {console.log(e);}
+
+intro2(flora2);
+intro2(aalase2);
+intro2(someObject);    // no error
+
+intro3(flora2);
+intro3(aalase2);
+intro3(someObject);    // no error
+
+</script>
+
+
+<h1> Javascript Class - ES6</h1>
+<h2> Inheritance Polymorphism</h2>
+
+<pre>
+
+	class English {
+	 
+		greeting() {
+		    console.log("Hello");
+		}
+	}
+	 
+	class French {
+		greeting() {
+		    console.log("Bonjour");
+		}
+	}
+	 
+	function intro(language) {
+		language.greeting();
+	}
+	 
+	// -------------- TEST ----------------------
+	 
+	let flora = new English();
+	let aalase = new French();
+	 
+	// Call function:
+	intro(flora);
+	intro(aalase);
+	 
+	let someObject = {};
+	 
+	intro(someObject);// Error!!!
+</pre>
+
+<p> Open console to see the result !</p>

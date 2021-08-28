@@ -1,0 +1,121 @@
+<html>
+<body>
+
+<form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post">
+
+  <fieldset>
+    <h2>Json File</h2>
+     <input type='file' id='fileinput'>
+	 <input type='text' id='select' value=''>
+     <input type='button' id='btnLoad' value='Load' onclick='loadFile();'>
+  </fieldset>
+</form>
+
+<h3>Contents of the file:</h3>
+<p id="file-content">here</p>
+
+<script type="text/javascript">
+  style='<head><link rel="stylesheet" type="text/css" href="../resources/style.css"></head><body>';
+
+function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
+
+//usage:
+readTextFile("../data/data2.json", function(text){var data = JSON.parse(text);
+console.log(data);
+displayContents(data, Object.keys(data['movies']).length);
+});
+
+function load() {
+
+	var file, fr;
+	file = 'file://home/pi/Documents/Python/streaming/data/data2.json'
+	fr = new FileReader(file);
+	console.log(fr);
+    fr.onload = receivedText;
+    fr.readAsText(file);
+
+	function receivedText(e) {
+      let lines = e.target.result;
+      var newArr = JSON.parse(lines); 
+	  //console.log(newArr);
+	  //console.log(Object.keys(newArr['movies']).length);
+	  //displayContents(newArr, Object.keys(newArr['movies']).length);
+    }
+
+}  
+
+//load();
+
+function loadFile() {
+    var input, file, fr;
+    if (typeof window.FileReader !== 'function') {
+      alert("The file API isn't supported on this browser yet.");
+      return;
+	}
+
+    input = document.getElementById('fileinput');
+	console.log("input");
+	console.log(input.files);
+
+    if (!input) {
+      alert("Um, couldn't find the fileinput element.");
+    }
+    else if (!input.files) {
+      alert("This browser doesn't seem to support the `files` property of file inputs.");
+    }
+    else if (!input.files[0]) {
+      alert("Please select a file before clicking 'Load'");
+    }
+    else {
+      file = input.files[0];
+	  console.log(file);
+      fr = new FileReader();
+	  console.log(fr);
+      fr.onload = receivedText;
+      fr.readAsText(file);
+	}
+
+	function receivedText(e) {
+      let lines = e.target.result;
+      var newArr = JSON.parse(lines); 
+	  console.log(newArr);
+	  console.log(Object.keys(newArr['movies']).length);
+	  displayContents(newArr, Object.keys(newArr['movies']).length);
+    }
+}
+
+function displayContents(contents, l) {
+    var element = document.getElementById('file-content');
+	var search_text = document.getElementById('select').value;
+	console.log(search_text);
+	buffer = style; 
+	for (k=0; k<l; k++) {
+	  name = contents['movies'][k].name;	  
+	  if (name.toLowerCase().includes(search_text)) {
+		console.log(name);	
+		buffer += '<figure class="swap-on-hover">';
+		image = contents['movies'][k].img;
+		url = contents['movies'][k].name+'<br>'+contents['movies'][k].url;
+		buffer += '<img class="swap-on-hover__front-image" src='+image+' />';
+		buffer += '<div class="swap-on-hover__back-image">'+url+'</div></figure>'; 
+	  }	
+	}
+    element.innerHTML = buffer;
+}
+
+
+
+</script>
+
+</body>
+</html>

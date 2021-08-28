@@ -1,0 +1,72 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/home/pi/Documents/Python/streaming/resources/style.css">
+</head>
+
+<body>
+<h3>Text file (match.txt) </h3>
+<br>
+<input type="file" id="file-input" />
+<h3>Contents of the file:</h3>
+<p id="file-content">here</p>
+
+</body>
+
+<script>
+function readSingleFile(e) {
+  var file = e.target.files[0];
+  if (!file) {
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var contents = e.target.result;
+	contents = contents.replaceAll("[COLOR white]","");
+	contents = contents.replaceAll('[COLORwhite]','<figure class="swap-on-hover"><div class="swap-on-hover__back-image"><h3>');
+	contents = contents.replaceAll(', ','</h3>');
+	contents = contents.replaceAll('r.jpg<','r.kk') ; 
+	contents = contents.replaceAll('[COLORred]','');
+	contents = contents.replaceAll('[COLOR pink]','');
+	contents = contents.replaceAll('[/COLOR]','');
+	contents = contents.replaceAll("[B]","");
+	contents = contents.replaceAll('[/B]','');
+	contents = contents.replaceAll('[COLOR gold]','');
+	contents = contents.replaceAll('[I]','');
+	contents = contents.replaceAll('[/I]','');
+	contents = contents.replaceAll('sublink:LISTSOURCE:','<a href="');
+    contents = contents.replaceAll('ublink:LISTSOURCE:','<a href="');
+    contents = contents.replaceAll('::LISTNAME:','" target="new">');
+    contents = contents.replaceAll('::#\\\\r\\\\n','</a><br>');
+    contents = contents.replaceAll('\\\\r\\\\n', '');
+    contents = contents.replaceAll('[COLORgold]','');
+    contents = contents.replaceAll('[COLORorchid][/COLOR]','Link to video');
+    contents = contents.replaceAll('[COLORorchid]','');
+    contents = contents.replaceAll('[COLORred]','');
+    contents = contents.replaceAll('[COLORwhite]','');
+    contents = contents.replaceAll('[/COLOR]','');
+    contents = contents.replaceAll('(','');
+    contents = contents.replaceAll(')','');
+	contents = contents.replaceAll('jpg','jpg<br>') ;       
+	contents = contents.replaceAll('\'','');
+	
+	
+	contents = contents.replaceAll('https://www','</div><img class="swap-on-hover__front-image" src="https://www') ;
+	//contents = contents.replaceAll('https://picimg.net','</div><img class="swap-on-hover__front-image" src="https://picimg.net') ;
+
+    contents = contents.replaceAll('jpg','jpg"><div hidden>') ;
+	contents = contents.replaceAll('.kk','</div></figure>') ;
+
+	displayContents(contents);
+  };
+  reader.readAsText(file);
+}
+
+function displayContents(contents) {
+  var element = document.getElementById('file-content');
+  element.innerHTML = contents;
+}
+
+document.getElementById('file-input')
+  .addEventListener('change', readSingleFile, false);
+
+</script>
